@@ -12,7 +12,7 @@
 ## file which defines that while launching ncmpcpp.
 ##
 #
-ncmpcpp_directory = "~/.ncmpcpp"
+#ncmpcpp_directory = "~/.ncmpcpp"
 #
 ##
 ## Directory for storing downloaded lyrics. It
@@ -26,15 +26,15 @@ ncmpcpp_directory = "~/.ncmpcpp"
 #
 ## set it in order to make tag editor and renaming files work properly
 #
-mpd_host = "localhost"
+#mpd_host = "localhost"
 #
-mpd_port = "6600"
+#mpd_port = "6600"
 #
 mpd_music_dir = "/media/xt1/BackThisUp/backup/music"
 #
 #mpd_connection_timeout = "5"
 #
-mpd_crossfade_time = "5"
+#mpd_crossfade_time = "5"
 #
 #mpd_communication_mode = "notifications" (polling/notifications)
 #
@@ -70,7 +70,7 @@ visualizer_fifo_path = "/tmp/mpd.fifo"
 ## are some problems with it.
 ##
 #
-visualizer_output_name = "My FIFO"
+visualizer_output_name = "visFIFO"
 #
 ##
 ## Note: Below parameter defines how often ncmpcpp
