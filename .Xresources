@@ -1,0 +1,25 @@
+xterm*faceName: Terminus:style=Regular:size=10
+!xterm.font: terminus-12
+
+xterm*vt100*geometry: 80x25
+
+xterm*saveLines: 4096
+
+xterm*foreground: rgb:DC/DC/DC
+xterm*background: rgb:16/16/16
+
+XTerm*pointerColor: FF/FF/FF 
+
+XTerm*cursorColor: FF/FF/FF 
+
+XTerm*scrollColor: 00/00/00
+xterm*scrollKey:          true
+xterm*scrollTtyOutput:    false
+xterm*scrollBar:          true
+xterm*rightScrollBar:     true
+xterm*jumpScroll:         true
+xterm*multiScroll:        true
+
+xterm*toolBar:            true
+
+XTerm*highlightSelection: true 
