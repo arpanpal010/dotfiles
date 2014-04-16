@@ -15,6 +15,9 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+-- assault battery
+local assault=require("assault")
+
 -- volume control
 local volume_control = require("volume-control")
 
@@ -108,7 +111,7 @@ myawesomemenu = {
 -- {{{ systemmenu
 sysmenu= {
    { "update", terminal ..  " -e 'sudo pacman -Syu'" },
-   { "volume", "pavucontrol" },
+   { "logout", "logout" },
    { "lock screen", "xscreensaver-command -lock" },
    { "poweroff", terminal ..  " -e sudo poweroff" },
    { "reboot", terminal ..  " -e sudo reboot" },
@@ -143,11 +146,14 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 spacer = wibox.widget.textbox()
 separator = wibox.widget.textbox()
 spacer:set_text(" ")
-separator:set_text("| ")
+separator:set_text(" | ")
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock("%a %Y-%m-%d %H:%M:%S", 1, {align="right"})
+mytextclock = awful.widget.textclock("%a %Y-%m-%d %H:%M:%S ", 1, {align="right"})
+
+-- assault battery widget
+myassault = assault()
 
 -- volume control
 volumecfg = volume_control({channel="Master"})
@@ -156,7 +162,7 @@ volumecfg = volume_control({channel="Master"})
 volumecfg.widget:buttons(awful.util.table.join(
     volumecfg.widget:buttons(),
     awful.button({ }, 2,
-        function() awful.util.spawn("pavucontrol") end)
+        function() awful.util.spawn(terminal .. " -e alsamixer") end)
 ))
 
 -- Create a wibox for each screen and add it
@@ -239,6 +245,8 @@ for s = 1, screen.count() do
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(separator)
     right_layout:add(mytaglist[s])
+    right_layout:add(separator)
+    right_layout:add(myassault)
     right_layout:add(separator)
 	right_layout:add(volumecfg.widget)
     right_layout:add(separator)

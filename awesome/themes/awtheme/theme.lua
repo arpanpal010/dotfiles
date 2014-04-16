@@ -12,7 +12,7 @@ theme.wallpaper = "/home/arch/.config/awesome/themes/awtheme/wallpaper"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "dejavu serif condensed 11"
+theme.font      = "dejavu sans light 8"
 
 -- {{{ Colors
 theme.fg_normal  = "#DCDCCC"
