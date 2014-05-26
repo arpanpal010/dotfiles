@@ -2,11 +2,12 @@
 
 #script to copy the dotfiles to/from here to/from their proper places
 #to clone: git clone https://github.com/arpanpal010/dotfiles.git
-#usage:
-# $ sh linkthedots.sh collect --> get files
-# $ sh linkthedots.sh push --> put files
-# $ sh linkthedots.sh clean --> remove files
-
+#Usage:
+#$ sh linkthedots.sh collect --> get files
+#$ sh linkthedots.sh push --> put files
+#$ sh linkthedots.sh cleanstore --> remove files from dotstorage
+#$ sh linkthedots.sh cleanfiles --> remove files from config locations
+#$ sh linkthedots.sh help --> show this help
 #get dotfiles dir path from running file
 filepath=`readlink -f $0`;
 rootdir=${filepath%/*};
