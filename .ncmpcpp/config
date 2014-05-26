@@ -1,4 +1,4 @@
-####################################################
+q####################################################
 ## this is example configuration file, copy it to ##
 ## ~/.ncmpcpp/config and set up your preferences  ##
 ####################################################
@@ -58,7 +58,7 @@ mpd_music_dir = "/media/xt1/BackThisUp/backup/music"
 ## If you set format to 44100:16:2, make it 'yes'.
 ##
 #
-visualizer_in_stereo = "yes"
+visualizer_in_stereo = "no"
 #
 visualizer_fifo_path = "/tmp/mpd.fifo"
 #
@@ -89,7 +89,7 @@ visualizer_sync_interval = "30"
 #
 visualizer_type = "wave" (spectrum/wave)
 #
-#visualizer_look = "◆│"
+visualizer_look = "◆│"
 #
 ##### system encoding #####
 ##

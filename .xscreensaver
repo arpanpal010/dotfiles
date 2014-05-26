@@ -1,9 +1,9 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.26 for arch on Wed Apr  2 03:27:07 2014.
+# Written by xscreensaver-demo 5.26 for arch on Sat May 17 15:09:24 2014.
 # http://www.jwz.org/xscreensaver/
 
 timeout:	0:10:00
-cycle:		0:10:00
+cycle:		1:00:00
 lock:		False
 lockTimeout:	0:00:00
 passwdTimeout:	0:00:30
@@ -35,7 +35,7 @@ chooseRandomImages: False
 imageDirectory:	
 
 mode:		one
-selected:	89
+selected:	116
 
 textMode:	file
 textLiteral:	XScreenSaver
@@ -161,7 +161,7 @@ programs:								      \
   GL: 				endgame -root				    \n\
 				euler2d -root				    \n\
 				fluidballs -root			    \n\
-  GL: 				flurry -root				    \n\
+  Default: 			flurry -root				    \n\
 - GL: 				glblur -root				    \n\
   GL: 				glsnake -root				    \n\
 				halftone -root				    \n\
@@ -206,7 +206,8 @@ programs:								      \
 				fireworkx -root				    \n\
 				fuzzyflakes -root			    \n\
 				interaggregate -root			    \n\
-				intermomentary -root			    \n\
+  GL: 				intermomentary -root -draw-delay 75221	      \
+				  -num-discs 248			    \n\
 				memscroller -root			    \n\
   GL: 				noof -root				    \n\
 				pacman -root				    \n\

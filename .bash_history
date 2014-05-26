@@ -1,73 +1,3 @@
-sh ./bin/cputemp.sh 
-sudo fdisk -l
-man fdisk
-losetup -f ./ArchLinuxARM-2014.04-rpi.img --show
-sudo losetup -f ./ArchLinuxARM-2014.04-rpi.img --show
-sudo fdisk -l /dev/loop0
-sudo fdisk  /dev/loop0
-sudo fdisk -l /dev/loop0
-sudo fdisk  /dev/loop0
-sudo fdisk -l /dev/loop0
-sudo e2fsck -f /dev/loop0p2
-sudo e2fsck -f /dev/loop0
-sudo losetup -d /dev/loop0
-sudo losetup -f ./ArchLinuxARM-2014.04-rpi.img --show
-sudo e2fsck -f /dev/loop0p2
-sudo e2fsck -f /dev/loop0
-sudo losetup -d /dev/loop0
-sudo fdisk -l /dev/sdc
-dd if=/dev/zero of=/dev/sdc bs=4M 
-sudo dd if=/dev/zero of=/dev/sdc bs=4M 
-sudo fdisk -l
-sudo dd if=./ArchLinuxARM-2014.04-rpi.img of=/dev/sdc bs=8M 
-sudo dd if=./ArchLinuxARM-2014.04-rpi.img of=/dev/sdc
-sudo fdisk -l
-sudo fdisk /dev/sdc
-df -H /dev/sdc
-df -H 
-sudo fdisk -l
-sudo e2fsck /dev/sdc5
-sudo e2fsck -f /dev/sdc5
-sudo resize2fs /dev/sdc5
-sudo fdisk -l
-mount
-ssh root@192.168.1.5
-arp -a
-ssh root@192.168.1.5
-ssh -f root@192.168.1.5
-ssh root@192.168.1.5
-ssh root@192.168.1.5
-sudo fdisk -l
-sudo fdisk /dev/sdc
-sudo fdisk -l
-sudo e2fsck -f  /dev/sdc5 
-sudo resize2fs  /dev/sdc5 
-sudo fdisk -lh
-sync
-ssh pi@192.168.1.5
-ssh root@192.168.1.5
-ssh pi@192.168.1.5
-ssh pi@192.168.1.5
-sudo fdisk /dev/sdc
-sudo dd if=./ArchLinuxARM-2014.04-rpi.img of=/dev/sdc bs=8M 
-sudo fdisk /dev/sdc 
-exit
-e2fsck -f /dev/sdc5
-sudo e2fsck -f /dev/sdc5
-sudo resize2fs /dev/sdc5 
-ssh root@192.168.1.5
-rm .ssh/known_hosts 
-ssh root@192.168.1.5
-chfn
-ssh pi@192.168.1.5
-dd if=/dev/sdc of=./rpi2014.05.01_32g.img bs=8M
-sudo dd if=/dev/sdc of=./rpi2014.05.01_32g.img bs=8M
-sh ./bin/cputemp.sh 
-beet update
-beet import ./ --timid
-beet mod -a the jimi hendrix experience albumartist='Jimi Hendrix'
-beet import ./ --timid
-beet import ./ -s --timid
 beet import ./ --timid
 beet import ./ --timid
 beet import ./ --flat --timid
@@ -352,3 +282,219 @@ git commit -a -m "setting changes2"
 git push origin master
 sh ./dotfiles/linkthedots.sh collect
 sh linkthedots.sh collect
+git commit -a -m "setting changes"
+git push origin master
+cp /etc/mpd.conf ./mpd/mpd.conf 
+git commit -a -m "settings update"
+git push origin master
+beet import ./ --timid
+beet import ./ --flat --timid
+git clone https://github.com/arpanpal010/dotfiles.git
+sh ~/bin/cputemp.sh 
+startx
+sudo shutdoen -P 09:00
+sudo shutdown -P 09:00
+beet import ./ --timid
+beet update 
+beet update -a
+beet write
+sh ~/bin/cputemp.sh 
+ping -c 3 221.139.225.41
+sudo ufw status verbose
+lastlog 
+lastb
+sudo lastb
+sudo last
+pacman -Ss transmission
+sh ~/bin/cputemp.sh 
+sudo nano /etc/mpd.conf
+sudo systemctl restart mpd.service
+sudo nano /etc/mpd.conf
+sudo systemctl restart mpd.service
+sudo nano /etc/mpd.conf
+startx
+awsetbg 1396876664567.jpg 
+sh ~/bin/cputemp.sh 
+startx
+sudo reboot
+sh ~/bin/cputemp.sh 
+sudo shutdown -P 09:00
+gnome-disks
+sh ~/bin/cputemp.sh 
+beet update 
+beet update -a
+beet import ./ --timid
+beet import ./ --flat --timid
+beet mod -a g3 albumartist='Joe Satriani'
+beet mod  g3 albumartist='Joe Satriani'
+beet update
+beet update -a
+beet write joe satriani
+beet update -a
+beet update
+beet import ./ --timid
+beet update
+beet update -a
+beet write nirvana
+beet update -a
+beet ls andalusia
+sh ~/bin/cputemp.sh 
+gnome-disks
+beet import ./ --timid
+beet import ./ --flat --timid
+gnome-disks
+sh ~/bin/cputemp.sh 
+startx
+sh ~/bin/cputemp.sh 
+beet import ./ --timid
+beet mod -a punky bruster albumartist='Devin Townsend'
+beet mod -a cooked on phonics albumartist='Devin Townsend'
+beet import ./ --timid
+sh ~/bin/cputemp.sh 
+beet import ./ --timid
+beet mod -a devin townsend albumartist='Devin Townsend'
+beet mod -a strapping young lad albumartist='Devin Townsend'
+beet update
+beet update-a
+beet update -a
+beet write devin townsend
+beet update -a
+beet update
+htop
+sh ~/bin/cputemp.sh 
+gnome-disks
+sh ~/bin/cputemp.sh 
+killall mpv
+startx
+sudo shutdown -P 09:00
+exit
+startx
+beet import ./ --timid
+beet import ./ --timid
+beet import ./ --flat --timid
+beet import ./ --timid
+beet update 
+beet update -a
+sudo fdisk -l
+mount
+sudo umount /dev/sdb1
+startx
+sh ~/bin/cputemp.sh 
+top
+df -h
+free
+man fre
+free -h
+ping 8.8.8.8
+clear
+clear
+nano /etc/mpd.conf 
+cle
+clear
+exit
+sh ~/bin/cputemp.sh 
+man firefox 
+firefox --help
+sudo shutdown -P 09:00
+ncmpcpp 
+awsetbg 1399819904034.jpg 
+awsetbg 1399887675102.jpg 
+sh ~/bin/cputemp.sh 
+cd scrap
+ls
+cd /media/xt1/BackThisUp/backup/scrap/
+ls
+sudo losetup -f ./privy.onlyme  --show
+sudo cryptsetup luksOpen /dev/loop0 privy
+sudo mount /dev/mapper/privy /mnt/
+sudo umount /dev/mapper/privy
+sudo cryptsetup luksClose /dev/loop0
+sudo cryptsetup luksClose privy
+sudo losetup -d /dev/loop0  --show
+sudo losetup -d /dev/loop0 
+startx
+sh ~/bin/cputemp.sh 
+startx
+awsetbg 05\ -\ fEYcOJA.jpg 
+awsetbg 01\ -\ HgtMMsH.jpg 
+awsetbg 02\ -\ W9186PJ.jpg 
+awsetbg 03
+awsetbg 03\ -\ Crnvh1g.jpg 
+awsetbg 07\ -\ XIRB0rd.jpg 
+sh ~/bin/cputemp.sh 
+startx
+sh ~/bin/cputemp.sh 
+man ffmPEG
+ffmpeg -i ./480P_520k_26400261_kimk.mp4 
+ffmpeg -i ./480P_520k_26400261_kimk.mp4  -f ffmetadata
+ffmpeg -i ./480P_520k_26400261_kimk.mp4  -f ffmetadata /dev/null 
+hachoir-metadata ./480P_520k_26400261_kimk.mp4 
+man hachoir-metadata
+hachoir-metadata
+hachoir-metadata ./480P_520k_26400261_kimk.mp4 --level=9
+hachoir-metadata ./480P_520k_26400261_kimk.mp4 --level=9 --raw
+hachoir-metadata ./480P_520k_26400261_kimk.mp4 --level=9 --raw --verbose
+\a
+man %
+%
+man bash
+cd /media/xt1/BackThisUp/backup/scrap/
+sudo losetup -f ./privy.onlyme --show
+sudo cryptsetup /dev/loop0 privy
+sudo cryptsetup luksOpen /dev/loop0 privy
+sudo mount /dev/mapper/privy /mnt/
+pcmanfm 
+sudo umount /dev/mapper/privy 
+sudo cryptsetup luksClose /dev/loop0 
+sudo cryptsetup luksClose privy
+sudo losetup -d ./privy.onlyme 
+sudo losetup -d /dev/loop0
+startx
+sh ~/bin/cputemp.sh 
+chmod +x linkthedots.sh 
+cd dotfiles
+sh linkthedots.sh 
+cd ..
+sh ./dotfiles/linkthedots.sh 
+startx
+clear
+ls -a
+xscreensaver-command -deactivate
+xscreensaver-command -activate
+ps
+clear
+cd dotfiles
+ls
+nano linkthedots.sh 
+htop
+clear
+ntop
+update
+sudo pacman -Syu
+sudo pacman -Rnc
+sudo pacman -Rc
+sudo pacman -c
+sudo pacman -R
+sudo pacman -clean
+sudo pacman --clean
+clear
+htop
+exit
+man rm
+cd dotfiles
+sh linkthedots.sh COLLECT
+sh linkthedots.sh collect
+sh linkthedots.sh cleanstore
+sh linkthedots.sh collect
+sh linkthedots.sh push
+sh linkthedots.sh cleanfiles
+sh linkthedots.sh collect
+sh linkthedots.sh cleanfiles
+sh linkthedots.sh push
+cat /etc/mpd.conf 
+sh linkthedots.sh cleanstore
+sh linkthedots.sh collect
+sh linkthedots.sh cleanstore
+sh linkthedots.sh collect
+sh linkthedots.sh cleanfiles
+sh linkthedots.sh push

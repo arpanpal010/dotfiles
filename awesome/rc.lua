@@ -15,13 +15,9 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
--- assault battery
-local assault=require("assault")
-
--- volume control
-local volume_control = require("volume-control")
-
--- {{{ ERROR HANDLING
+-- ---------------------------------------------
+-- ERROR HANDLING
+-- ---------------------------------------------
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
@@ -45,15 +41,19 @@ do
     end)
 end
 
-
--- {{{ Variable definitions
+-- ---------------------------------------------
+-- Variable definitions
+-- ---------------------------------------------
 -- Themes define colours, icons, and wallpapers
 beautiful.init(awful.util.getdir("config") .. "/themes/awtheme/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
+browser = "firefox"
+filebrowser= "pcmanfm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
+guieditor= "gvim"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -62,7 +62,18 @@ editor_cmd = terminal .. " -e " .. editor
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
+-- ---------------------------------------------
+-- Wallpaper
+-- ---------------------------------------------
+if beautiful.wallpaper then
+    for s = 1, screen.count() do
+        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+    end
+end
 
+-- ---------------------------------------------
+-- LAYOUTS
+-- ---------------------------------------------
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
@@ -79,94 +90,123 @@ local layouts =
     -- awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
 }
--- }}}
 
-
--- {{{ Wallpaper
-if beautiful.wallpaper then
-    for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    end
-end
--- }}}
-
-
--- {{{ Tags
+-- ---------------------------------------------
+-- TAGS
+-- ---------------------------------------------
 -- Define a tag table which hold all screen tags.
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({'1', '2', '3' , '4', '5', '6'}, s, layouts[1])
+    tags[s] = awful.tag({'1', '2', '3' , '4', '5', '6', '7', '8', '9'}, s, layouts[1])
 end
--- }}}
 
--- {{{ Awesome Menu
-myawesomemenu = {
+-- ---------------------------------------------
+-- LAUNCHER/MENU
+-- ---------------------------------------------
+-- netmenu
+netmenu= {
+	{ "browser", browser },
+	{ "browser> window", browser .. " -browser" },
+	{ "browser> instance", browser .. " -new-instance" },
+	{ "browser> private", browser .. " -private" },
+	{ "transmission", "transmission-gtk" },
+}
+
+--filesmenu
+filesmenu = {
+	{ "/home", filebrowser },
+	{ "/media", filebrowser .. " /media" },
+	{ "/trash", filebrowser .. " .local/share/Trash/files/" },
+	{ "/root", filebrowser .. " /" },
+	{ "files> window", filebrowser .. " --new-win" },
+	{ "files> search", filebrowser .. " --find-files" }
+}
+
+-- system menu
+sysmenu= {
+   { "htop", terminal ..  " -e htop" },
+   { "update", terminal ..  " -e 'sudo pacman -Syu'" },
+   { "volume", "pavucontrol" },
+   { "themes", "lxappearance" }
+}
+
+-- Awesome Menu
+awmenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
 
--- {{{ systemmenu
-sysmenu= {
-   { "update", terminal ..  " -e 'sudo pacman -Syu'" },
-   { "logout", "logout" },
-   { "lock screen", "xscreensaver-command -lock" },
+-- power menu
+powmenu= awful.menu({ items = {
    { "poweroff", terminal ..  " -e sudo poweroff" },
    { "reboot", terminal ..  " -e sudo reboot" },
-   { "halt", terminal ..  " -e 'sudo halt'" }
-}
--- }}}
+   { "halt", terminal ..  " -e 'sudo halt'" },
+   { "switch-to-user", "dm-tool switch-to-greeter" }, -- requires lightdm
+   { "logout", "dm-tool lock" } -- requires lightdm
+}})
 
 -- Main Menu
 mymainmenu = awful.menu({ items = { 
 	{ "terminal", terminal },
-	{ "firefox", "firefox" },
-	{ "files", "pcmanfm" },
-	{ "gvim", "gvim" },
+	{ "internet", netmenu },
+	{ "files", filesmenu },
+	{ "editor", guieditor },
 	{ "geany", "geany" },
-	{ "transmission", "transmission-gtk" },
-	{ "htop", terminal .. " -e htop"},
-	{ "ncmpcpp", terminal .. " -e ncmpcpp" },
+	{ "music", terminal .. " -e ncmpcpp" },
 	{ "system", sysmenu },
-	{ "awesome", myawesomemenu, beautiful.awesome_icon },
+	{ "awesome", awmenu }
 }})
+
 -- Launcher
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
+-- power menu
+powlauncher = awful.widget.launcher({ image = beautiful.power_icon,
+                                     menu = powmenu })
 -- Menubar configuration
 menubar.app_folders = { "/usr/share/applications/" }
 menubar.show_categories = false
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
 
+-- ---------------------------------------------
+-- WIDGETS
+-- ---------------------------------------------
 -- space and separator widget
 spacer = wibox.widget.textbox()
-separator = wibox.widget.textbox()
-spacer:set_text(" ")
-separator:set_text(" | ")
+spacer.width = 3
 
--- {{{ Wibox
--- Create a textclock widget
+separator = wibox.widget.textbox()
+separator:set_text(" ][ ")
+
+-- textclock
 mytextclock = awful.widget.textclock("%a %Y-%m-%d %H:%M:%S ", 1, {align="right"})
 
 -- assault battery widget
-myassault = assault()
+--local assault=require("battery")
+--mybatt = assault()
 
 -- volume control
+volicon = wibox.widget.imagebox()
+volicon:set_image(beautiful.volicon)
+local volume_control = require("volume-control")
 volumecfg = volume_control({channel="Master"})
-
--- open alsamixer in terminal on middle-mouse
+-- open alsamixer/pavucontrol in terminal on middle-mouse
 volumecfg.widget:buttons(awful.util.table.join(
     volumecfg.widget:buttons(),
     awful.button({ }, 2,
-        function() awful.util.spawn(terminal .. " -e alsamixer") end)
+        function() awful.util.spawn("pavucontrol") end)
 ))
 
+-- ---------------------------------------------
+-- WIBOX
+-- ---------------------------------------------
 -- Create a wibox for each screen and add it
-mywibox = {}
+topwibox = {}
+botwibox = {}
 mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
@@ -175,8 +215,8 @@ mytaglist.buttons = awful.util.table.join(
                     awful.button({ modkey }, 1, awful.client.movetotag),
                     awful.button({ }, 3, awful.tag.viewtoggle),
                     awful.button({ modkey }, 3, awful.client.toggletag),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
+                    awful.button({ }, 4, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end),
+                    awful.button({ }, 5, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end)
                     )
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
@@ -212,7 +252,10 @@ mytasklist.buttons = awful.util.table.join(
                                               awful.client.focus.byidx(-1)
                                               if client.focus then client.focus:raise() end
                                           end))
-
+                                          
+-- ---------------------------------------------
+-- SCREEN LAYOUT
+-- ---------------------------------------------
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
@@ -225,53 +268,94 @@ for s = 1, screen.count() do
                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
     -- Create a taglist widget
-    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
+    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.butttons)
 
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
-    -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s })
-
+    -- top bar
+    topwibox[s] = awful.wibox({ position = "top", screen = s })
+	
     -- Widgets that are aligned to the left
-    local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(mylauncher)
-    left_layout:add(spacer)
-    left_layout:add(mypromptbox[s])
-    left_layout:add(spacer)
+    local left_top_layout = wibox.layout.fixed.horizontal()
+    left_top_layout:add(mylauncher)
+    left_top_layout:add(spacer)
+    left_top_layout:add(mypromptbox[s])
+    left_top_layout:add(spacer)
 
     -- Widgets that are aligned to the right
-    local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(separator)
-    right_layout:add(mytaglist[s])
-    right_layout:add(separator)
-    right_layout:add(myassault)
-    right_layout:add(separator)
-	right_layout:add(volumecfg.widget)
-    right_layout:add(separator)
-    right_layout:add(mytextclock)
-    right_layout:add(mylayoutbox[s])
+    local right_top_layout = wibox.layout.fixed.horizontal()
+    if s == 1 then right_top_layout:add(wibox.widget.systray()) end
+    --right_top_layout:add(separator)
+    --right_top_layout:add(mytaglist[s])
+    --right_top_layout:add(separator)
+    --right_top_layout:add(mybatt)
+    right_top_layout:add(separator)
+    right_top_layout:add(volicon)
+	right_top_layout:add(volumecfg.widget)
+    right_top_layout:add(separator)
+    right_top_layout:add(mytextclock)
+    right_top_layout:add(separator)
+    right_top_layout:add(powlauncher)
+   -- right_top_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
-    local layout = wibox.layout.align.horizontal()
-    layout:set_left(left_layout)
-    layout:set_middle(mytasklist[s])
-    layout:set_right(right_layout)
+    local top_layout = wibox.layout.align.horizontal()
+    top_layout:set_left(left_top_layout)
+    top_layout:set_middle(mytasklist[s])
+    top_layout:set_right(right_top_layout)
 
-    mywibox[s]:set_widget(layout)
+    topwibox[s]:set_widget(top_layout)
+    topwibox[s].opacity="0.8"
+    
+    -- bottom bar
+    botwibox[s] =  awful.wibox({ position = "bottom", screen = s })
+    
+    -- Widgets that are aligned to the left
+    --local left_bot_layout = wibox.layout.fixed.horizontal()
+    --left_bot_layout:add(mylauncher)
+    --left_bot_layout:add(spacer)
+    --left_bot_layout:add(mypromptbox[s])
+    --left_bot_layout:add(spacer)
+
+    -- Widgets that are aligned to the right
+    local right_bot_layout = wibox.layout.fixed.horizontal()
+    --if s == 1 then right_bot_layout:add(wibox.widget.systray()) end
+    right_bot_layout:add(separator)
+    right_bot_layout:add(mytaglist[s])
+    right_bot_layout:add(separator)
+    --right_bot_layout:add(mybatt)
+    --right_bot_layout:add(separator)
+	--right_bot_layout:add(volumecfg.widget)
+    --right_bot_layout:add(separator)
+    --right_bot_layout:add(mytextclock)
+    --right_bot_layout:add(powlauncher)
+    right_bot_layout:add(mylayoutbox[s])
+
+    -- Now bring it all together (with the tasklist in the middle)
+    local bot_layout = wibox.layout.align.horizontal()
+    --bot_layout:set_left(left_bot_layout)
+    --bot_layout:set_middle(mytasklist[s])
+    bot_layout:set_right(right_bot_layout)
+
+    botwibox[s]:set_widget(bot_layout)
+    botwibox[s].opacity="0.8"
+    
 end
 -- }}}
 
--- {{{ Mouse bindings
+-- ---------------------------------------------
+-- MOUSE
+-- ---------------------------------------------
 root.buttons(awful.util.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 4, awful.tag.viewprev),
+    awful.button({ }, 5, awful.tag.viewnext)
 ))
--- }}}
 
--- {{{ Key bindings
+-- ---------------------------------------------
+-- KEYBOARD
+-- ---------------------------------------------
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
@@ -404,7 +488,9 @@ clientbuttons = awful.util.table.join(
 root.keys(globalkeys)
 -- }}}
 
--- {{{ Rules
+-- ---------------------------------------------
+-- RULES
+-- ---------------------------------------------
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
@@ -413,7 +499,7 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
+    { rule = { class = "mpv" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
@@ -425,9 +511,10 @@ awful.rules.rules = {
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
 }
--- }}}
 
--- {{{ Signals
+-- ---------------------------------------------
+-- SIGNALS
+-- ---------------------------------------------
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c, startup)
     -- Enable sloppy focus
@@ -444,10 +531,10 @@ client.connect_signal("manage", function (c, startup)
         -- awful.client.setslave(c)
 
         -- Put windows in a smart way, only if they does not set an initial position.
-        if not c.size_hints.user_position and not c.size_hints.program_position then
+        --if not c.size_hints.user_position and not c.size_hints.program_position then
             awful.placement.no_overlap(c)
             awful.placement.no_offscreen(c)
-        end
+		--end
     end
 
     local titlebars_enabled = true
@@ -498,4 +585,3 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- }}}

@@ -79,7 +79,7 @@ function vcontrol:update(status)
     else
         volume = "M"
     end
-    self.widget:set_text("vol:" .. volume)
+    self.widget:set_text(volume)
 end
 
 function vcontrol:mixercommand(...)

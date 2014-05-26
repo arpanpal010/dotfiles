@@ -12,11 +12,11 @@ theme.wallpaper = "/home/arch/.config/awesome/themes/awtheme/wallpaper"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "dejavu sans light 8"
+theme.font      = "dejavu sans condensed 10"
 
 -- {{{ Colors
-theme.fg_normal  = "#DCDCCC"
-theme.fg_focus   = "#F0DFAF"
+theme.fg_normal  = "#FFFFFF"
+theme.fg_focus   = "#FFFFFF"
 theme.fg_urgent  = "#CC9393"
 theme.bg_normal  = "#1F1F1F"
 theme.bg_focus   = "#444444"
@@ -32,7 +32,7 @@ theme.border_marked = "#CC9393"
 -- }}}
 
 -- {{{ Titlebars
-theme.titlebar_bg_focus  = theme.bg_normal
+theme.titlebar_bg_focus  = "#3C3C3C"
 theme.titlebar_bg_normal = theme.bg_normal
 -- }}}
 
@@ -67,18 +67,20 @@ theme.mouse_finder_color = "#CC9393"
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_height = 20
-theme.menu_width  = 125
+theme.menu_width  = 150
 -- }}}
 
 -- {{{ Icons
 -- {{{ Taglist
 theme.taglist_squares_sel   = "/home/arch/.config/awesome/themes/awtheme/taglist/squarefz.png"
 theme.taglist_squares_unsel = "/home/arch/.config/awesome/themes/awtheme/taglist/squarez.png"
---theme.taglist_squares_resize = "false"
+theme.taglist_squares_resize = "true"
 -- }}}
 
 -- {{{ Misc
 theme.awesome_icon           = "/home/arch/.config/awesome/themes/awtheme/awesome-icon.png"
+theme.power_icon             = "/home/arch/.config/awesome/themes/awtheme/powericon.png"
+theme.volicon			     = "/home/arch/.config/awesome/themes/awtheme/volicon.png"
 theme.menu_submenu_icon      = "/usr/share/awesome/themes/default/submenu.png"
 -- }}}
 
