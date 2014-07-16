@@ -2,6 +2,7 @@
 
 #script to copy the dotfiles to/from here to/from their proper places
 #to clone: git clone https://github.com/arpanpal010/dotfiles.git
+
 #Usage:
 #$ sh linkthedots.sh collect --> get files
 #$ sh linkthedots.sh push --> put files
